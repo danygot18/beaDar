@@ -50,7 +50,13 @@ import TaroPosts from './components/TaroPosts';
 
 
 //Questions
+import NewQuestion from './components/admin/NewQuestions';
+import QuestionsList from './components/admin/ListQuestion';
+import UpdateQuestion from './components/admin/UpdateQuestion';
 
+import SurveyForm from './components/Question/Survey';
+
+import SurveyAnalysis from './components/admin/SurveyAnalysis';
 
 function App() {
   useEffect(() => {
@@ -67,6 +73,39 @@ function App() {
     <div className="App">
       <ThemeProvider theme={Taro}>
         <Routes>
+          {/* <Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <UsersList />
+              </ProtectedRoute>
+            }
+          /> */}
+          <Route path="/surveyAnalysis" element={
+            <ProtectedRoute isAdmin={true}>
+              <SurveyAnalysis />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/questions" element={
+            <ProtectedRoute isAdmin={true}>
+              <QuestionsList />
+            </ProtectedRoute>
+          } />
+          <Route path="/questions/create" element={
+            <ProtectedRoute isAdmin={true}>
+              <NewQuestion />
+            </ProtectedRoute>
+          } />
+
+
+          <Route path="/questions/update/:id" element={
+            <ProtectedRoute isAdmin={true}>
+              <UpdateQuestion />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/survey" element={<SurveyForm />} />
 
           {/* Routes for users */}
           <Route path="/register" element={<Register />} exact="true" />

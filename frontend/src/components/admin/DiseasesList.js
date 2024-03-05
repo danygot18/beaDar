@@ -162,7 +162,7 @@ const DiseasesList = () => {
 
     return (
 
-        <Box sx={{ height: 730, width: "90%", paddingTop: 5 }} backgroundColor="#f4effc">
+        <Box sx={{ height: 730, width: "90%", paddingTop: 5 }} style={{ background: 'white' }}>
             <Fragment>
                 <MetaData title={"All Diseases"} />
 

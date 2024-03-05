@@ -5,7 +5,7 @@ import axios from 'axios';
 import Sidebar from './Sidebar';
 
 
-const CreateQuestion = () => {
+const newQuestion = () => {
   const [newQuestion, setNewQuestion] = useState({
     questionText: '',
     options: '', // Initialize options as an empty string
@@ -24,7 +24,7 @@ const CreateQuestion = () => {
     const optionsArray = (typeof newQuestion.options === 'string' ? newQuestion.options.split(',').map(option => option.trim()) : []);
 
     try {
-      await axios.post('http://localhost:4001/api/questions', {
+      await axios.post('/api/v1/questions', {
         questionText: newQuestion.questionText,
         options: optionsArray,
       });
@@ -45,7 +45,7 @@ const CreateQuestion = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5" style={{ background: 'white' }}>
       <Sidebar />
       <div className="row">
         <div className="col-md-3">
@@ -61,9 +61,10 @@ const CreateQuestion = () => {
               value={newQuestion.questionText}
               onChange={handleInputChange}
               className="form-control mx-auto"
-              style={{ maxWidth: '300px' }}
+              style={{ maxWidth: '500px', width: '400px', height: '100px', wordWrap: 'break-word' }}
             />
           </div>
+
           <div className="mb-3">
             <label htmlFor="options" className="form-label d-block text-center">Options (comma-separated):</label>
             <input
@@ -77,7 +78,13 @@ const CreateQuestion = () => {
             />
           </div>
           <div className="text-center">
-            <button className="btn btn-crud" onClick={handleCreateQuestion}>Create Question</button>
+            <button
+              className="btn btn-crud btn-success"
+              onClick={handleCreateQuestion}
+              style={{ borderRadius: '5px', padding: '10px 20px', fontSize: '16px' }}
+            >
+              Create Question
+            </button>
           </div>
           <ToastContainer />
         </div>
@@ -86,4 +93,4 @@ const CreateQuestion = () => {
   );
 };
 
-export default CreateQuestion;
+export default newQuestion;

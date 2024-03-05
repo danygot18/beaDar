@@ -136,7 +136,7 @@ const NewUser = () => {
 
     return (
         <Fragment>
-            <div className="row">
+            <div className="row" style={{ background: 'white' }}>
                 <div className="col-12 col-md-2">
                     <Sidebar />
                 </div>

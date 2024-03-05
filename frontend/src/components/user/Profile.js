@@ -11,27 +11,28 @@ const Profile = () => {
     const { user, loading } = useSelector((state) => state.auth);
 
     return (
-        <Fragment>
+        <Fragment >
             {user.role !== "admin" && (
-                <Fragment>
+                <Fragment >
                     <Header />
                     {loading ? (
                         <Loader />
                     ) : (
                         <Fragment>
-                            <MetaData title={"Your Profile"} />
-
+                            <MetaData title={"Your Profile"}  />
+                            <div className="container" >
                             {/* <h2 className="mt-5 ml-5">My Profile</h2> */}
                             <br /><br /><br />
                             <hr
+                            
                                 style={{
-                                    color: "#67568C",
-                                    backgroundColor: "#67568C",
+                                    color: "#85deac",                               
+                                    backgroundColor: "#85deac",
                                     height: 5
                                 }}
                             />
 
-                            <div className="row justify-content-around mt-5 user-info">
+                            <div className="row justify-content-around mt-5 user-info" >
                                 <div className="col-12 col-md-3">
                                     <figure className="avatar avatar-profile">
                                         <img
@@ -78,12 +79,13 @@ const Profile = () => {
                                 </div>
                             </div>
                             <br /><br />
+                            </div>
                         </Fragment>
                     )}
                 </Fragment>
             )}
             {user.role == "admin" && (
-                <Box sx={{ height: 660, width: "100%", paddingTop: 5 }} backgroundColor="#f4effc">
+                <Box sx={{ height: 7760, width: "100%", paddingTop: 5 }} style={{ background: 'white' }}>
                     <Fragment>
                         <div className="row">
                             <div className="col-12 col-md-2">
@@ -95,8 +97,8 @@ const Profile = () => {
                                 <h1>Profile</h1>
                                 <hr
                                     style={{
-                                        color: "#67568C",
-                                        backgroundColor: "#67568C",
+                                        color: "#85deac",
+                                        backgroundColor: "#85deac",
                                         height: 5
                                     }}
                                 />

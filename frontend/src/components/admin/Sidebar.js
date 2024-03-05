@@ -25,6 +25,7 @@ import SportsMotorsportsIcon from '@mui/icons-material/SportsMotorsports';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import WidgetsIcon from '@mui/icons-material/Widgets';
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 //
 import { Route, Link, Routes } from "react-router-dom";
 import { logout, loadUser } from "../../actions/userActions";
@@ -103,6 +104,21 @@ function Sidebar(props) {
                             >
                                 <HomeRepairServiceIcon />
                                 <ListItemText sx={{ paddingLeft: 3 }}>Diseases</ListItemText>
+                            </IconButton>
+                        </ListItemIcon>
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton>
+                        <ListItemIcon style={iconStyle}>
+                            <IconButton
+                                size="medium"
+                                color="inherit"
+                                component={Link}
+                                to="/questions"
+                            >
+                                <LiveHelpIcon />
+                                <ListItemText sx={{ paddingLeft: 3 }}>Questions</ListItemText>
                             </IconButton>
                         </ListItemIcon>
                     </ListItemButton>
