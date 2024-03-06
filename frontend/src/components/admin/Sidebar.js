@@ -33,6 +33,7 @@ import "../../App.css";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
+import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
 
 const drawerWidth = 180;
 
@@ -56,7 +57,63 @@ function Sidebar(props) {
         right: 0,
         padding: '1rem',
     };
+    const handleClicks = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
+      const handleCloses = () => {
+        setAnchorEl(null);
+      };
 
+    
+
+    const container = window !== undefined ? () => window().document.body : undefined;
+
+    const notify = (message = "") =>
+        toast.success(message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+
+    const dispatch = useDispatch();
+
+    const { user, loading, admin } = useSelector((state) => state.auth);
+    // const { cartItems } = useSelector((state) => state.cart);
+
+    // const { cartItems } = useSelector(state => state.cart)
+
+    const logoutHandler = () => {
+        dispatch(logout());
+        notify("Logged Out Successfully");
+    };
+
+    const profileHandler = () => {
+        dispatch(loadUser());
+    };
+
+
+    //Avatar DropDown
+    const [anchorEl, setAnchorEl] = useState(null);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const [open, setOpen] = React.useState(false);
+    const anchorRef = React.useRef(null);
+    const handleCloser = (event) => {
+        if (anchorRef.current && anchorRef.current.contains(event.target)) {
+            return;
+        }
+
+        setOpen(false);
+    };
     const drawer = (
         <div>
             {/* <img src="/images/ -logo.png" width="auto" style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '10px' }} /> */}
@@ -114,11 +171,42 @@ function Sidebar(props) {
                             <IconButton
                                 size="medium"
                                 color="inherit"
-                                component={Link}
-                                to="/questions"
+                                onClick={handleClicks}
                             >
                                 <LiveHelpIcon />
-                                <ListItemText sx={{ paddingLeft: 3 }}>Questions</ListItemText>
+                            </IconButton>
+                        </ListItemIcon>
+                        <ListItemText primary="Questions" onClick={handleClicks} />
+                        <Menu
+                            id="questions-dropdown"
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                        >
+                            <MenuItem component={Link} to="/farmerQuestion">
+                                Questions for Farmers
+                            </MenuItem>
+                            <MenuItem component={Link} to="/sellerQuestion">
+                                Questions for Sellers
+                            </MenuItem>
+                            <MenuItem component={Link} to="/questions">
+                                Questions for Consumers
+                            </MenuItem>
+                        </Menu>
+                    </ListItemButton>
+                </ListItem>
+
+                <ListItem disablePadding>
+                    <ListItemButton>
+                        <ListItemIcon style={iconStyle}>
+                            <IconButton
+                                size="medium"
+                                color="inherit"
+                                component={Link}
+                                to="/surveyAnalysis"
+                            >
+                                <StackedBarChartIcon />
+                                <ListItemText sx={{ paddingLeft: 3 }}>Survey</ListItemText>
                             </IconButton>
                         </ListItemIcon>
                     </ListItemButton>
@@ -142,55 +230,6 @@ function Sidebar(props) {
             <Divider />
         </div>
     );
-
-    const container = window !== undefined ? () => window().document.body : undefined;
-
-    const notify = (message = "") =>
-        toast.success(message, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-
-    const dispatch = useDispatch();
-
-    const { user, loading, admin } = useSelector((state) => state.auth);
-    // const { cartItems } = useSelector((state) => state.cart);
-
-    // const { cartItems } = useSelector(state => state.cart)
-
-    const logoutHandler = () => {
-        dispatch(logout());
-        notify("Logged Out Successfully");
-    };
-
-    const profileHandler = () => {
-        dispatch(loadUser());
-    };
-
-
-    //Avatar DropDown
-    const [anchorEl, setAnchorEl] = useState(null);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-    const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef(null);
-    const handleCloser = (event) => {
-        if (anchorRef.current && anchorRef.current.contains(event.target)) {
-            return;
-        }
-
-        setOpen(false);
-    };
 
     return (
         <Box sx={{ display: 'flex' }}>

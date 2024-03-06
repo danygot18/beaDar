@@ -66,55 +66,57 @@ const Header = () => {
         setOpen(false);
     };
     return (
-        <section className = "h-wrapper">
-        <div className="flexCenter innerWidth paddings h-container">
-        <Fragment>
-            <AppBar style={headerStyle}>
-                <Toolbar>
-                    {user ? (
-                        <div className="flexCenter h-menu">
-                        <Fragment>
-                            <Button color="inherit" href="/ShopProduct" style={{ textAlign: 'center' }}> Forum </Button>
-                            <Button color="inherit" href="/TaroPosts" style={{ textAlign: 'center' }}> About Taro </Button>
-                            <Button color="inherit" href="/TaroDiseases" style={{ textAlign: 'center' }}> Diseases </Button>
-                            <Button color="inherit" href="/ShopService" style={{ textAlign: 'center' }}> Preventive Measures </Button>
-                            <Button color="inherit" href="/survey" style={{ textAlign: 'center' }}> Survey </Button>
+        <section className="h-wrapper">
+            <div className="flexCenter innerWidth paddings h-container">
+                <Fragment>
+                    <AppBar style={headerStyle}>
+                        <Toolbar>
+                            {user ? (
+                                <div className="flexCenter h-menu">
+                                    <Fragment>
+                                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                                            <Button color="inherit" href="/ShopProduct" style={{ textAlign: 'center' }}> Forum </Button>
+                                            <Button color="inherit" href="/TaroPosts" style={{ textAlign: 'center' }}> About Taro </Button>
+                                            <Button color="inherit" href="/TaroDiseases" style={{ textAlign: 'center' }}> Diseases </Button>
+                                            <Button color="inherit" href="/ShopService" style={{ textAlign: 'center' }}> Preventive Measures </Button>
+                                            <Button color="inherit" href="/survey" style={{ textAlign: 'center' }}> Survey </Button>
+                                        </div>
 
-                            <Button color="inherit" onClick={handleClick} >
-                                <Avatar src={user.avatar && user.avatar.url}
-                                    alt={user && user.name} sx={{ width: 56, height: 56, marginRight: "auto" }}>
-                                </Avatar>
-                            </Button>
-                            <Menu
-                                id="dropdown-menu"
-                                anchorEl={anchorEl}
-                                keepMounted
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                            >
-                                <MenuItem component={Link} to="/profile">Profile</MenuItem>
-                                <Divider />
-                                <MenuItem onClick={logoutHandler} to="/">Logout</MenuItem>
-                            </Menu>
-                        </Fragment>
-                        </div>
-                    ) : (
-                        !loading && (
-              
-                            <Fragment>
-                                <Typography component={Link} to="/" style={{ textDecoration: 'none' }} variant="h6" color="inherit" href="/" sx={{ fontSize: 24 }}>
-                                    TARO E-ASSIST
-                                </Typography>
-                                <Button sx={{ marginLeft: "auto" }} color="inherit" href="/login">Login</Button>
-                                <Button color="inherit" href="/register">Register</Button>
-                            </Fragment>
-                        )
-                    )}
-                </Toolbar>
-            </AppBar >
-        </Fragment >
-        </div>
-    </section>
+                                        <Button color="inherit" onClick={handleClick} style={{ marginLeft: 'auto' }}>
+                                            <Avatar src={user.avatar && user.avatar.url} alt={user && user.name} sx={{ width: 56, height: 56 }}>
+                                            </Avatar>
+                                            <Menu
+                                                id="dropdown-menu"
+                                                anchorEl={anchorEl}
+                                                keepMounted
+                                                open={Boolean(anchorEl)}
+                                                onClose={handleClose}
+                                            >
+                                                <MenuItem component={Link} to="/profile">Profile</MenuItem>
+                                                <Divider />
+                                                <MenuItem onClick={logoutHandler} to="/">Logout</MenuItem>
+                                            </Menu>
+                                        </Button>
+                                    </Fragment>
+
+                                </div>
+                            ) : (
+                                !loading && (
+
+                                    <Fragment>
+                                        <Typography component={Link} to="/" style={{ textDecoration: 'none' }} variant="h6" color="inherit" href="/" sx={{ fontSize: 24 }}>
+                                            TARO E-ASSIST
+                                        </Typography>
+                                        <Button sx={{ marginLeft: "auto" }} color="inherit" href="/login">Login</Button>
+                                        <Button color="inherit" href="/register">Register</Button>
+                                    </Fragment>
+                                )
+                            )}
+                        </Toolbar>
+                    </AppBar >
+                </Fragment >
+            </div>
+        </section>
     );
 };
 

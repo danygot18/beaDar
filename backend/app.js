@@ -8,6 +8,10 @@ const taro = require("./routes/taro");
 const disease = require("./routes/disease");
 const answer = require("./routes/answer");
 const question = require("./routes/question")
+const fquestion = require("./routes/farmerQuestions")
+const squestions = require("./routes/sellerQuestions")
+const fanswer = require("./routes/fanswer")
+const sanswer = require("./routes/sanswer")
 
 app.use(
   cors({
@@ -22,9 +26,16 @@ app.use(cookieParser());
 app.use("/api/v1", auth);
 app.use("/api/v1", taro);
 app.use("/api/v1", disease);
-app.use("/api/v1", answer);
-app.use("/api/v1", question);
 
+//questions
+app.use("/api/v1", question);
+app.use("/api/v1", fquestion);
+app.use("/api/v1", squestions)
+
+//answer
+app.use("/api/v1", answer);
+app.use("/api/v1", fanswer);
+app.use("/api/v1", sanswer);
 
 
 module.exports = app;

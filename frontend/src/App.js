@@ -54,9 +54,24 @@ import NewQuestion from './components/admin/NewQuestions';
 import QuestionsList from './components/admin/ListQuestion';
 import UpdateQuestion from './components/admin/UpdateQuestion';
 
-import SurveyForm from './components/Question/Survey';
+
 
 import SurveyAnalysis from './components/admin/SurveyAnalysis';
+
+//farmer
+import FQuestionsList from './components/admin/farmer/ListFQuestion';
+import FUpdateQuestion from './components/admin/farmer/UpdateQuestion';
+import FnewQuestion from './components/admin/farmer/NewFQuestion';
+
+//Seller
+import SQuestionsList from './components/admin/seller/ListSQuestions';
+import SUpdateQuestion from './components/admin/seller/UpdateSQuestion';
+import SnewQuestion from './components/admin/seller/NewSQuestion';
+
+//Answer
+import SurveyForm from './components/Question/Survey';
+import FSurveyForm from './components/Question/farmerSurvey';
+import SSurveyForm from './components/Question/sellerSurvey';
 
 function App() {
   useEffect(() => {
@@ -86,7 +101,7 @@ function App() {
               <SurveyAnalysis />
             </ProtectedRoute>
           } />
-
+          {/* Consumer */}
           <Route path="/questions" element={
             <ProtectedRoute isAdmin={true}>
               <QuestionsList />
@@ -98,14 +113,56 @@ function App() {
             </ProtectedRoute>
           } />
 
-
           <Route path="/questions/update/:id" element={
             <ProtectedRoute isAdmin={true}>
               <UpdateQuestion />
             </ProtectedRoute>
           } />
 
+          {/* Farmer */}
+          <Route path="/farmerQuestion" element={
+            <ProtectedRoute isAdmin={true}>
+              <FQuestionsList />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/farmerquestions/create" element={
+            <ProtectedRoute isAdmin={true}>
+              <FnewQuestion />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/farmerquestions/update/:id" element={
+            <ProtectedRoute isAdmin={true}>
+              <FUpdateQuestion />
+            </ProtectedRoute>
+          } />
+
+          {/* Seller */}
+          <Route path="/sellerQuestion" element={
+            <ProtectedRoute isAdmin={true}>
+              <SQuestionsList />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/sellerquestions/create" element={
+            <ProtectedRoute isAdmin={true}>
+              <SnewQuestion />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/sellerquestions/update/:id" element={
+            <ProtectedRoute isAdmin={true}>
+              <SUpdateQuestion />
+            </ProtectedRoute>
+          } />
+
+
           <Route path="/survey" element={<SurveyForm />} />
+
+          <Route path="/farmerSurvey" element={<FSurveyForm />} />
+
+          <Route path="/sellerSurvey" element={<SSurveyForm />} />
 
           {/* Routes for users */}
           <Route path="/register" element={<Register />} exact="true" />

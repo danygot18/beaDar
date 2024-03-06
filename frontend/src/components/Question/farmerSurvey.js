@@ -2,14 +2,14 @@ import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import Header from '../layout/Header'
 
-const SurveyForm = () => {
+const FSurveyForm = () => {
   const [questions, setQuestions] = useState([]);
   const [formData, setFormData] = useState([]);
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get('/api/v1/questions');
+        const response = await axios.get('/api/v1/fquestions');
         setQuestions(response.data.questions);
         const initialFormData = response.data.questions.map(question => ({
           questionId: question._id,
@@ -42,7 +42,7 @@ const SurveyForm = () => {
     console.log('Form Data:', formDataArray); // Log formDataArray
     try {
       // Send form data to the server
-      await axios.post('/api/v1/submit', formDataArray);
+      await axios.post('/api/v1/fsubmit', formDataArray);
 
       console.log('Form submitted successfully');
       // Reload the page after successful submission
@@ -64,19 +64,10 @@ const SurveyForm = () => {
   const part8Questions = questions.slice(7, 8);
 
   return (
-
     <Fragment>
-    <style>
-      {`
-        body {
-          margin: 0;
-          padding: 0;
-        }
-      `}
-    </style>
-    <div className="survey-container" style={{ backgroundColor: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '1000vh', width: '90%', maxWidth: '800px', padding: '40px', border: '1px solid #ccc', borderRadius: '8px', margin: '0 auto' }}>
-        <p className="form-title" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontSize: '24px', fontWeight: 'bold', color: '#333', marginBottom: '10px', backgroundColor: "white" }}>
-        Consumer Questions
+     <div className="survey-container" style={{ background: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', width: '90%', maxWidth: '800px', padding: '40px', border: '1px solid #ccc', borderRadius: '8px', margin: '40px auto 0' }}>
+        <p className="form-title" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontSize: '24px', fontWeight: 'bold', color: '#333', marginBottom: '20px' }}>
+        Farmer Questions
       </p>
       <div className="parts-container">
         <Header />
@@ -220,19 +211,9 @@ const SurveyForm = () => {
             ))}
           </form>
 
-
-
-
-
-
-
-
-
-
-
-
         </div>
       </div>
+
 
       {/* Submit button */}
       <div className="submit-button-container">
@@ -241,10 +222,8 @@ const SurveyForm = () => {
         </button>
       </div>
     </div>
-
     </Fragment>
   );
 };
 
-
-export default SurveyForm;
+export default FSurveyForm;
