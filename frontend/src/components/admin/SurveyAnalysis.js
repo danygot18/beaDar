@@ -6,6 +6,7 @@ import { BarChart, LineChart } from '@mui/x-charts';
 import SurveyForm from '../Question/Survey';
 import FSurveyForm from '../Question/farmerSurvey';
 import SSurveyForm from '../Question/sellerSurvey';
+import OverallSurvey from '../Question/overallSurvey';
 import Header from '../layout/Header';
 
 
@@ -29,42 +30,45 @@ const SurveyAnalysis = () => {
     const fetchSurveyAnswers = async () => {
       try {
         // Fetch submitted answers from the survey
-        const response = await axios.get('/api/v1/answer');
+        const response = await axios.get('/api/v1/allanswer');
         const { answers } = response.data;
 
         // Process the answers to format them for charts
         const lineChartDataMap = new Map();
         const lineChartDataMaps = new Map();
-        const barChartDataMap = new Map();+
+        const barChartDataMap = new Map(); +
 
 
-        answers.forEach(answer => {
-          answer.answers.forEach(individualAnswer => {
-            const { questions, selectedOption } = individualAnswer;
+          answers.forEach(answer => {
+            answer.answers.forEach(individualAnswer => {
+              const { questions, selectedOption } = individualAnswer;
 
-            // Convert question IDs to labels and filter out unwanted questions
-            const questionLabel = mapQuestionIdToLabel(questions);
-            if (!questionLabel) return;
+              // Convert question IDs to labels and filter out unwanted questions
+              const questionLabel = mapQuestionIdToLabel(questions);
+              if (!questionLabel) return;
 
-            // For LineChart
-            const lineData = lineChartDataMap.get(questionLabel) || { questionId: questionLabel, Yes: 0, No: 0, Maybe: 0 };
-            lineData[selectedOption]++;
-            lineChartDataMap.set(questionLabel, lineData);
+              // For LineChart
+              // const lineData = lineChartDataMap.get(questionLabel) || { questionId: questionLabel, Yes: 0, No: 0, Maybe: 0 };
+              // lineData[selectedOption]++;
+              // lineChartDataMap.set(questionLabel, lineData);
+              const lineData = lineChartDataMap.get(questionLabel) || { questionId: questionLabel, 1: 0, 2: 0, 3: 0, 4:0, 5:0 };
+              lineData[selectedOption]++;
+              lineChartDataMap.set(questionLabel, lineData);
 
-            const linesData = lineChartDataMaps.get(questionLabel) || { questionId: questionLabel, Yes: 0, No: 0, Maybe: 0 };
-            linesData[selectedOption]++;
-            lineChartDataMaps.set(questionLabel, linesData);
+              const linesData = lineChartDataMaps.get(questionLabel) || { questionId: questionLabel, 1: 0, 2: 0, 3: 0, 4:0, 5:0 };
+              linesData[selectedOption]++;
+              lineChartDataMaps.set(questionLabel, linesData);
 
-            // For BarChart
-            const barData = barChartDataMap.get(questionLabel) || { questionId: questionLabel, Yes: 0, No: 0, Maybe: 0 };
+              // For BarChart
+              const barData = barChartDataMap.get(questionLabel) || { questionId: questionLabel, 1: 0, 2: 0, 3: 0 };
 
-            // Validate and handle NaN values
-            if (!isNaN(barData[selectedOption])) {
-              barData[selectedOption]++;
-              barChartDataMap.set(questionLabel, barData);
-            }
+              // Validate and handle NaN values
+              if (!isNaN(barData[selectedOption])) {
+                barData[selectedOption]++;
+                barChartDataMap.set(questionLabel, barData);
+              }
+            });
           });
-        });
 
         const newLineChartData = Array.from(lineChartDataMap.values());
         const newLineChartDatas = Array.from(lineChartDataMap.values());
@@ -84,70 +88,70 @@ const SurveyAnalysis = () => {
       }
     };
 
-    const sellerfetchSurveyAnswers = async () => {
-      try {
-        // Fetch submitted answers from the survey
+    // const sellerfetchSurveyAnswers = async () => {
+    //   try {
+    //     // Fetch submitted answers from the survey
 
 
-        const responses = await axios.get('/api/v1/sanswer');
-        const { answers } = responses.data;
+    //     const responses = await axios.get('/api/v1/sanswer');
+    //     const { answers } = responses.data;
 
-        // Process the answers to format them for charts
-        const lineChartDataMap = new Map();
-        const lineChartDataMaps = new Map();
-        const barChartDataMap = new Map();+
+    //     // Process the answers to format them for charts
+    //     const lineChartDataMap = new Map();
+    //     const lineChartDataMaps = new Map();
+    //     const barChartDataMap = new Map();+
 
-        console.log(answers)
-        answers.forEach(answer => {
-          answer.answers.forEach(individualAnswer => {
-            const { questions, selectedOption } = individualAnswer;
+    //     console.log(answers)
+    //     answers.forEach(answer => {
+    //       answer.answers.forEach(individualAnswer => {
+    //         const { questions, selectedOption } = individualAnswer;
 
-            // Convert question IDs to labels and filter out unwanted questions
-            const questionLabel = mapQuestionIdToLabel(questions);
-            if (!questionLabel) return;
+    //         // Convert question IDs to labels and filter out unwanted questions
+    //         const questionLabel = mapQuestionIdToLabel(questions);
+    //         if (!questionLabel) return;
 
-            // For LineChart
-            const lineData = lineChartDataMap.get(questionLabel) || { questionId: questionLabel, Yes: 0, No: 0, Maybe: 0 };
-            lineData[selectedOption]++;
-            lineChartDataMap.set(questionLabel, lineData);
+    //         // For LineChart
+    //         const lineData = lineChartDataMap.get(questionLabel) || { questionId: questionLabel, Yes: 0, No: 0, Maybe: 0 };
+    //         lineData[selectedOption]++;
+    //         lineChartDataMap.set(questionLabel, lineData);
 
-            const linesData = lineChartDataMaps.get(questionLabel) || { questionId: questionLabel, Yes: 0, No: 0, Maybe: 0 };
-            linesData[selectedOption]++;
-            lineChartDataMaps.set(questionLabel, linesData);
+    //         const linesData = lineChartDataMaps.get(questionLabel) || { questionId: questionLabel, Yes: 0, No: 0, Maybe: 0 };
+    //         linesData[selectedOption]++;
+    //         lineChartDataMaps.set(questionLabel, linesData);
 
-            // For BarChart
-            const barData = barChartDataMap.get(questionLabel) || { questionId: questionLabel, Yes: 0, No: 0, Maybe: 0 };
+    //         // For BarChart
+    //         const barData = barChartDataMap.get(questionLabel) || { questionId: questionLabel, Yes: 0, No: 0, Maybe: 0 };
 
-            // Validate and handle NaN values
-            if (!isNaN(barData[selectedOption])) {
-              barData[selectedOption]++;
-              barChartDataMap.set(questionLabel, barData);
-            }
-          });
-        });
+    //         // Validate and handle NaN values
+    //         if (!isNaN(barData[selectedOption])) {
+    //           barData[selectedOption]++;
+    //           barChartDataMap.set(questionLabel, barData);
+    //         }
+    //       });
+    //     });
 
-        //consumer
+    //     //consumer
 
-        //seller
-        const snewLineChartData = Array.from(lineChartDataMap.values());
-        const snewLineChartDatas = Array.from(lineChartDataMap.values());
-        const snewBarChartData = Array.from(barChartDataMap.values());
+    //     //seller
+    //     const snewLineChartData = Array.from(lineChartDataMap.values());
+    //     const snewLineChartDatas = Array.from(lineChartDataMap.values());
+    //     const snewBarChartData = Array.from(barChartDataMap.values());
 
-        console.log('Line Chart Data:', snewLineChartData);
-        console.log('Line Chart Data:', snewLineChartDatas);
-        console.log('Bar Chart Data:', snewBarChartData);
+    //     console.log('Line Chart Data:', snewLineChartData);
+    //     console.log('Line Chart Data:', snewLineChartDatas);
+    //     console.log('Bar Chart Data:', snewBarChartData);
 
 
-        SsetLineChartData(snewLineChartData);
-        SsetBarChartData(snewBarChartData);
-        setLoading(false); // Set loading state to false after data fetching
-      } catch (error) {
-        console.error('Error fetching survey answers:', error);
-        setError('Error fetching survey answers. Please try again later.');
-        setLoading(false); // Set loading state to false in case of error
-      }
-    };
-    
+    //     SsetLineChartData(snewLineChartData);
+    //     SsetBarChartData(snewBarChartData);
+    //     setLoading(false); // Set loading state to false after data fetching
+    //   } catch (error) {
+    //     console.error('Error fetching survey answers:', error);
+    //     setError('Error fetching survey answers. Please try again later.');
+    //     setLoading(false); // Set loading state to false in case of error
+    //   }
+    // };
+
 
 
     const mapQuestionIdToLabel = (questionId) => {
@@ -216,13 +220,35 @@ const SurveyAnalysis = () => {
           return "f8"
 
 
+        case "65e8bb30d0f4c1fd91d6e476":
+          return "Question 1";
+        case "65e8c1237f9fe9df7e9491e3":
+          return "Question 2";
+        case "65e8c22d7f9fe9df7e949294":
+          return "Question 3";
+        case "65e8c25e7f9fe9df7e949296":
+          return "Question 4";
+        case "65e8c2e97f9fe9df7e9492f5":
+          return "Question 5";
+        case "65e8c30d7f9fe9df7e9492f7":
+          return "Question 6";
+        case "65e8c3377f9fe9df7e9492f9":
+          return "Question 7";
+        case "65e8c3667f9fe9df7e9492fb":
+          return "Question 8"
+        case "65e8c3847f9fe9df7e9492fd":
+          return "Question 9"
+
+
+
+
         default:
           return null;
       }
     };
 
     fetchSurveyAnswers();
-    sellerfetchSurveyAnswers();
+    // sellerfetchSurveyAnswers();
   }, []);
 
 
@@ -237,43 +263,47 @@ const SurveyAnalysis = () => {
   console.log(SlineChartData)
   // Filter lineChartData to exclude Q6 to Q10
   const fLineChartData = SlineChartData || lineChartData.filter(data => !data.questionId.startsWith('Q1') && !data.questionId.startsWith('Q4'));
-  const BLineChartData = 
-  SlineChartData.filter && lineChartData.filter
-  (data => !data.questionId.startsWith('s2') 
-  && !data.questionId.startsWith('Q35')
-  && !data.questionId.startsWith('Q36')
-  && !data.questionId.startsWith('Q37')
-  && !data.questionId.startsWith('Q38')
-  && !data.questionId.startsWith('s3')
-  && !data.questionId.startsWith('s4')
-  && !data.questionId.startsWith('s5')
-  && !data.questionId.startsWith('s6')
-  && !data.questionId.startsWith('s7')
-  && !data.questionId.startsWith('s8')
+  const BLineChartData =
+    lineChartData.filter
+      (data => !data.questionId.startsWith('s2')
+      && !data.questionId.startsWith('c1')
+        && !data.questionId.startsWith('Q35')
+        && !data.questionId.startsWith('Q36')
+        && !data.questionId.startsWith('Q37')
+        && !data.questionId.startsWith('Q38')
+        && !data.questionId.startsWith('s1')
+        && !data.questionId.startsWith('s3')
+        && !data.questionId.startsWith('s4')
+        && !data.questionId.startsWith('s5')
+        && !data.questionId.startsWith('s6')
+        && !data.questionId.startsWith('s7')
+        && !data.questionId.startsWith('s8')
+        
+        && !data.questionId.startsWith('c2')
+        && !data.questionId.startsWith('c3')
+        && !data.questionId.startsWith('c4')
+        && !data.questionId.startsWith('c5')
+        && !data.questionId.startsWith('c6')
+        && !data.questionId.startsWith('c7')
+        && !data.questionId.startsWith('c8')
 
-  && !data.questionId.startsWith('c2')
-  && !data.questionId.startsWith('c3')
-  && !data.questionId.startsWith('c4')
-  && !data.questionId.startsWith('c5')
-  && !data.questionId.startsWith('c6')
-  && !data.questionId.startsWith('c7')
-  && !data.questionId.startsWith('c8')
-
-  && !data.questionId.startsWith('f2')
-  && !data.questionId.startsWith('f3')
-  && !data.questionId.startsWith('f4')
-  && !data.questionId.startsWith('f5')
-  && !data.questionId.startsWith('f6')
-  && !data.questionId.startsWith('f7')
-  && !data.questionId.startsWith('f8'));
+        && !data.questionId.startsWith('s1')
+        && !data.questionId.startsWith('f2')
+        && !data.questionId.startsWith('f3')
+        && !data.questionId.startsWith('f4')
+        && !data.questionId.startsWith('f5')
+        && !data.questionId.startsWith('f6')
+        && !data.questionId.startsWith('f7')
+        && !data.questionId.startsWith('f8'));
 
   return (
     <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 0, p: 0 }}>
       <Box sx={{ gridColumn: 'span 6', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', height: '120px', margin: '120px' }}>
         <Sidebar />
-        <SurveyForm />
+        {/* <SurveyForm />
         <FSurveyForm />
-        <SSurveyForm />
+        <SSurveyForm /> */}
+        <OverallSurvey />
       </Box>
 
 
@@ -283,38 +313,38 @@ const SurveyAnalysis = () => {
         </Typography>
 
         {/* Line Chart */}
-        <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: 'white', marginBottom: '20px' }}>
+        {/* <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: 'white', marginBottom: '20px' }}>
           <Box sx={{ borderRadius: '10px', padding: '20px', width: '100%' }} className="card product-cart-text prodcard-JSON">
             <Typography variant="h5" gutterBottom>
-              Rate 1 to 3
+              Answer #
             </Typography>
             <LineChart
               dataset={fLineChartData}
               xAxis={[{ scaleType: 'band', dataKey: 'questionId' }]}
               series={[
-                { dataKey: 'Yes', label: 'Yes' },
-                { dataKey: 'No', label: 'No' },
-                { dataKey: 'Somehow Familiar', label: 'Somehow Familiar' }
+                { dataKey: '1', label: 'Yes' },
+                { dataKey: '2', label: 'No' },
+                { dataKey: '3', label: 'Somehow Familiar' }
               ]}
               {...chartSetting}
               ref={chartRef}
             />
           </Box>
-        </div>
+        </div> */}
 
         {/* Bar Chart */}
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
           <Box sx={{ borderRadius: '10px', padding: '20px', width: '100%' }} className="card product-cart-text prodcard-JSON">
             <Typography variant="h5" gutterBottom>
-              Questions #1 in Consumer  
+              Questions #1 in Roles
             </Typography>
             <BarChart
-              dataset={barChartData.filter(data => data.questionId.startsWith('c1')) }
+              dataset={barChartData.filter(data => data.questionId.startsWith('Question 1'))}
               xAxis={[{ scaleType: 'band', dataKey: 'questionId' }]}
               series={[
-                { dataKey: 'Yes', label: 'Yes' },
-                { dataKey: 'No', label: 'No' },
-                { dataKey: 'Maybe', label: 'Maybe' }
+                { dataKey: '1', label: 'Consumer' },
+                { dataKey: '2', label: 'Seller' },
+                { dataKey: '3', label: 'Grower' }
               ]}
               {...chartSetting}
               ref={chartRef}
@@ -344,15 +374,17 @@ const SurveyAnalysis = () => {
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
           <Box sx={{ borderRadius: '10px', padding: '20px', width: '100%' }} className="card product-cart-text prodcard-JSON">
             <Typography variant="h5" gutterBottom>
-              Question (Additional)
+              Overall Answer
             </Typography>
             <LineChart
               dataset={BLineChartData}
               xAxis={[{ scaleType: 'band', dataKey: 'questionId' }]}
               series={[
-                { dataKey: 'Yes', label: 'Yes' },
-                { dataKey: 'No', label: 'No' },
-                { dataKey: 'Maybe', label: 'Maybe' }
+                { dataKey: '1', label: '1' },
+                { dataKey: '2', label: '2' },
+                { dataKey: '3', label: '3' },
+                { dataKey: '4', label: '4' },
+                { dataKey: '5', label: '5' }
               ]}
               {...chartSetting}
               ref={chartRef}

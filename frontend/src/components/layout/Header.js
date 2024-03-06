@@ -79,7 +79,7 @@ const Header = () => {
                                             <Button color="inherit" href="/TaroPosts" style={{ textAlign: 'center' }}> About Taro </Button>
                                             <Button color="inherit" href="/TaroDiseases" style={{ textAlign: 'center' }}> Diseases </Button>
                                             <Button color="inherit" href="/ShopService" style={{ textAlign: 'center' }}> Preventive Measures </Button>
-                                            <Button color="inherit" href="/survey" style={{ textAlign: 'center' }}> Survey </Button>
+    
                                         </div>
 
                                         <Button color="inherit" onClick={handleClick} style={{ marginLeft: 'auto' }}>

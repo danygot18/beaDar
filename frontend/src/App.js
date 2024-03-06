@@ -68,10 +68,18 @@ import SQuestionsList from './components/admin/seller/ListSQuestions';
 import SUpdateQuestion from './components/admin/seller/UpdateSQuestion';
 import SnewQuestion from './components/admin/seller/NewSQuestion';
 
+//overall
+import CreateSurveyList from './components/admin/overallSurvey/createSurveyList';
+import OverallSurveyList from './components/admin/overallSurvey/overSurveyList';
+import UpdateSurveyList from './components/admin/overallSurvey/updateSurveyList';
+
 //Answer
 import SurveyForm from './components/Question/Survey';
 import FSurveyForm from './components/Question/farmerSurvey';
 import SSurveyForm from './components/Question/sellerSurvey';
+import OverallSurvey from './components/Question/overallSurvey';
+
+
 
 function App() {
   useEffect(() => {
@@ -157,12 +165,34 @@ function App() {
             </ProtectedRoute>
           } />
 
+          {/* Overall */}
+          <Route path="/overallSurvey" element={
+            <ProtectedRoute isAdmin={true}>
+              <OverallSurveyList />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/overallSurvey/create" element={
+            <ProtectedRoute isAdmin={true}>
+              <CreateSurveyList />
+            </ProtectedRoute>
+          } />
+
+          <Route path="/overallSurvey/update/:id" element={
+            <ProtectedRoute isAdmin={true}>
+              <UpdateSurveyList />
+            </ProtectedRoute>
+          } />
+
 
           <Route path="/survey" element={<SurveyForm />} />
 
           <Route path="/farmerSurvey" element={<FSurveyForm />} />
 
           <Route path="/sellerSurvey" element={<SSurveyForm />} />
+
+          <Route path="/allSurvey" element={<OverallSurvey />} />
+
 
           {/* Routes for users */}
           <Route path="/register" element={<Register />} exact="true" />

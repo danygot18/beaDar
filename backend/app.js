@@ -6,12 +6,16 @@ const cors = require("cors");
 const auth = require("./routes/auth");
 const taro = require("./routes/taro");
 const disease = require("./routes/disease");
+
+
 const answer = require("./routes/answer");
 const question = require("./routes/question")
 const fquestion = require("./routes/farmerQuestions")
 const squestions = require("./routes/sellerQuestions")
 const fanswer = require("./routes/fanswer")
 const sanswer = require("./routes/sanswer")
+const allQuestions = require("./routes/allQuestion")
+const allAnswer = require("./routes/allAnswer")
 
 app.use(
   cors({
@@ -30,12 +34,14 @@ app.use("/api/v1", disease);
 //questions
 app.use("/api/v1", question);
 app.use("/api/v1", fquestion);
-app.use("/api/v1", squestions)
+app.use("/api/v1", squestions);
+app.use("/api/v1", allQuestions)
 
 //answer
 app.use("/api/v1", answer);
 app.use("/api/v1", fanswer);
 app.use("/api/v1", sanswer);
+app.use("/api/v1", allAnswer )
 
 
 module.exports = app;

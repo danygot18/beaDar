@@ -192,6 +192,9 @@ function Sidebar(props) {
                             <MenuItem component={Link} to="/questions">
                                 Questions for Consumers
                             </MenuItem>
+                            <MenuItem component={Link} to="/overallSurvey">
+                                Overall Survey
+                            </MenuItem>
                         </Menu>
                     </ListItemButton>
                 </ListItem>
