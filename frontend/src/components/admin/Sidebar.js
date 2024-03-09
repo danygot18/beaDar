@@ -205,9 +205,10 @@ function Sidebar(props) {
                             <MenuItem component={Link} to="/questions">
                                 Questions for Consumers
                             </MenuItem>
-                            <MenuItem component={Link} to="/overallSurvey">
+                            {/* <MenuItem component={Link} to="/overallSurvey">
                                 Overall Survey
-                            </MenuItem>
+                            </MenuItem> */}
+                            
                         </Menu>
                     </ListItemButton>
                 </ListItem>
@@ -295,8 +296,8 @@ function Sidebar(props) {
                 <Toolbar>
                     {user ? (
                         <Fragment>
-
-                            <Typography>Taro E-Assist</Typography>
+                            <Button href="/" color="inherit"><Typography>Taro E-Assist</Typography></Button>
+                            
                             <Button sx={{ marginLeft: "auto" }} color="inherit" onClick={handleClick}>
                                 <Avatar src={user.avatar && user.avatar.url}
                                     alt={user && user.name} sx={{ width: 56, height: 54, marginLeft: "" }}>

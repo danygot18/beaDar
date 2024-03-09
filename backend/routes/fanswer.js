@@ -7,4 +7,6 @@ router.post('/fsubmit', answersController.submitAnswer);
 router.get('/fanswer', answersController.getAnswers);
 // Other routes can be defined here
 
+router.get('/allFarmeranswer', answersController.getAllAnswers);
+
 module.exports = router;
