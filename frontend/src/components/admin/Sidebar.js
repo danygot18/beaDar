@@ -57,12 +57,7 @@ function Sidebar(props) {
         right: 0,
         padding: '1rem',
     };
-    const handleClicks = (event) => {
-        setAnchorEl(event.currentTarget);
-      };
-      const handleCloses = () => {
-        setAnchorEl(null);
-      };
+    
 
     
 
@@ -95,7 +90,13 @@ function Sidebar(props) {
     const profileHandler = () => {
         dispatch(loadUser());
     };
-
+    const [anchorEls, setAnchorEls] = useState(null);
+    const handleClicks = (event) => {
+        setAnchorEls(event.currentTarget);
+      };
+      const handleCloses = () => {
+        setAnchorEls(null);
+      };
 
     //Avatar DropDown
     const [anchorEl, setAnchorEl] = useState(null);
@@ -179,9 +180,9 @@ function Sidebar(props) {
                         <ListItemText primary="Questions" onClick={handleClicks} />
                         <Menu
                             id="questions-dropdown"
-                            anchorEl={anchorEl}
-                            open={Boolean(anchorEl)}
-                            onClose={handleClose}
+                            anchorEl={anchorEls}
+                            open={Boolean(anchorEls)}
+                            onClose={handleCloses}
                         >
                             <MenuItem component={Link} to="/farmerQuestion">
                                 Questions for Farmers

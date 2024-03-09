@@ -300,9 +300,9 @@ const SurveyAnalysis = () => {
     <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 0, p: 0 }}>
       <Box sx={{ gridColumn: 'span 6', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', height: '120px', margin: '120px' }}>
         <Sidebar />
-        {/* <SurveyForm />
-        <FSurveyForm />
-        <SSurveyForm /> */}
+         {/* <SurveyForm />
+        <FSurveyForm /> */}
+        <SSurveyForm />
         <OverallSurvey />
       </Box>
 
