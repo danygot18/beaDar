@@ -26,6 +26,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
+import PollIcon from '@mui/icons-material/Poll';
 //
 import { Route, Link, Routes } from "react-router-dom";
 import { logout, loadUser } from "../../actions/userActions";
@@ -90,6 +91,7 @@ function Sidebar(props) {
     const profileHandler = () => {
         dispatch(loadUser());
     };
+    //Question Dropdown
     const [anchorEls, setAnchorEls] = useState(null);
     const handleClicks = (event) => {
         setAnchorEls(event.currentTarget);
@@ -106,6 +108,16 @@ function Sidebar(props) {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    //SurveyDropdown
+    const [anchorElss, setAnchorElss] = useState(null);
+    const handleClickss = (event) => {
+        setAnchorElss(event.currentTarget);
+    };
+    const handleClosess = () => {
+        setAnchorElss(null);
+    };
+
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const handleCloser = (event) => {
@@ -200,19 +212,53 @@ function Sidebar(props) {
                     </ListItemButton>
                 </ListItem>
 
-                <ListItem disablePadding>
+                {/* <ListItem disablePadding>
                     <ListItemButton>
                         <ListItemIcon style={iconStyle}>
                             <IconButton
                                 size="medium"
                                 color="inherit"
                                 component={Link}
-                                to="/surveyAnalysis"
+                                to="/Dashboard"
                             >
                                 <StackedBarChartIcon />
                                 <ListItemText sx={{ paddingLeft: 3 }}>Survey</ListItemText>
                             </IconButton>
                         </ListItemIcon>
+
+                    </ListItemButton>
+                </ListItem> */}
+
+                {/* Survey */}
+                <ListItem disablePadding>
+                    <ListItemButton>
+                        <ListItemIcon style={iconStyle}>
+                            <IconButton
+                                size="medium"
+                                color="inherit"
+                                onClick={handleClickss}
+                            >
+                                <PollIcon />
+                            </IconButton>
+                        </ListItemIcon>
+                        <ListItemText primary="Survey" onClick={handleClickss} />
+                        <Menu
+                            id="questions-dropdown"
+                            anchorEl={anchorElss}
+                            open={Boolean(anchorElss)}
+                            onClose={handleClosess}
+                        >
+                            <MenuItem component={Link} to="/Dashboard">
+                                Survey for Farmers
+                            </MenuItem>
+                            <MenuItem component={Link} to="/SellerDashboard">
+                                Survey for Sellers
+                            </MenuItem>
+                            <MenuItem component={Link} to="/ConsumerDashboard">
+                                Survey for Consumers
+                            </MenuItem>
+                            
+                        </Menu>
                     </ListItemButton>
                 </ListItem>
                 {/* <ListItem disablePadding>

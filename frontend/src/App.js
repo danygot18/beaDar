@@ -76,7 +76,11 @@ import FSurveyForm from "./components/Question/farmerSurvey";
 import SSurveyForm from "./components/Question/sellerSurvey";
 import OverallSurvey from "./components/Question/overallSurvey";
 
-import Dashboard from "./components/admin/Dashboard";
+//charts
+import Dashboard from "./components/admin/Dashboard/Dashboard";
+import SellerDashboard from "./components/admin/Dashboard/SellerDashboard";
+import ConsumerDashboard from "./components/admin/Dashboard/ConsumerDashboard";
+
 
 function App() {
   useEffect(() => {
@@ -101,14 +105,14 @@ function App() {
               </ProtectedRoute>
             }
           /> */}
-          <Route
+          {/* <Route
             path="/surveyAnalysis"
             element={
               <ProtectedRoute isAdmin={true}>
                 <SurveyAnalysis />
               </ProtectedRoute>
             }
-          />
+          /> */}
 
           <Route
             path="/Dashboard"
@@ -117,7 +121,30 @@ function App() {
                 <Dashboard />
               </ProtectedRoute>
             }
+          /> 
+
+          <Route
+            path="/SellerDashboard"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <SellerDashboard />
+              </ProtectedRoute>
+            }
           />
+          
+
+          <Route
+            path="/ConsumerDashboard"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <ConsumerDashboard />
+              </ProtectedRoute>
+            }
+          />
+
+
+
+
           {/* Consumer */}
           <Route
             path="/questions"

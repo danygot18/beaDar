@@ -71,7 +71,6 @@ const SSurveyForm = () => {
         Seller Questions
       </p>
       <div className="parts-container">
-        <Header />
         {/* Part 1 */}
         <div className="part-container-horizontal">
           <h2 className="part-title" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontSize: '20px', fontWeight: 'bold', color: '#333', textAlign: 'left',  marginBottom: '10px' }}>Base on your experience</h2>
@@ -91,7 +90,7 @@ const SSurveyForm = () => {
               </div>
             ))}
           </form>
-          <h2 className="part-title" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontSize: '20px', fontWeight: 'bold', color: '#333', textAlign: 'left' }}>-------------</h2>
+         
           <form onSubmit={handleSubmit}>
             {part2Questions.map((question, index) => (
               <div key={question._id} className="question-container">
@@ -99,7 +98,7 @@ const SSurveyForm = () => {
                 <select
                   value={formData[index + 1]?.selectedOption}
                   onChange={(e) => handleInputChange(index + 1, e)}
-                >
+                  style={{ width: '100%', padding: '8px', marginBottom: '10px' }} >
                   <option value="">Select an option</option>
                   {question.options.map((option) => (
                     <option key={option} value={option}>{option}</option>
@@ -109,7 +108,7 @@ const SSurveyForm = () => {
             ))}
           </form>
 
-          <h2 className="part-title" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontSize: '20px', fontWeight: 'bold', color: '#333', textAlign: 'left' }}>---------------</h2>
+          
           <form onSubmit={handleSubmit}>
             {part3Questions.map((question, index) => (
               <div key={question._id} className="question-container">
@@ -117,7 +116,7 @@ const SSurveyForm = () => {
                 <select
                   value={formData[index + 2]?.selectedOption}
                   onChange={(e) => handleInputChange(index + 2, e)}
-                >
+                  style={{ width: '100%', padding: '8px', marginBottom: '10px' }} >
                   <option value="">Select an option</option>
                   {question.options.map((option) => (
                     <option key={option} value={option}>{option}</option>
@@ -126,7 +125,7 @@ const SSurveyForm = () => {
               </div>
             ))}
           </form>
-          <h2 className="part-title" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontSize: '20px', fontWeight: 'bold', color: '#333', textAlign: 'left' }}>-------------</h2>
+          
           <form onSubmit={handleSubmit}>
             {part4Questions.map((question, index) => (
               <div key={question._id} className="question-container">
@@ -134,7 +133,7 @@ const SSurveyForm = () => {
                 <select
                   value={formData[index + 3]?.selectedOption}
                   onChange={(e) => handleInputChange(index + 3, e)}
-                >
+                  style={{ width: '100%', padding: '8px', marginBottom: '10px' }} >
                   <option value="">Select an option</option>
                   {question.options.map((option) => (
                     <option key={option} value={option}>{option}</option>
@@ -150,7 +149,7 @@ const SSurveyForm = () => {
                 <select
                   value={formData[index + 4]?.selectedOption}
                   onChange={(e) => handleInputChange(index + 4, e)}
-                >
+                  style={{ width: '100%', padding: '8px', marginBottom: '10px' }} >
                   <option value="">Select an option</option>
                   {question.options.map((option) => (
                     <option key={option} value={option}>{option}</option>
@@ -167,7 +166,7 @@ const SSurveyForm = () => {
                 <select
                   value={formData[index + 5]?.selectedOption}
                   onChange={(e) => handleInputChange(index + 5, e)}
-                >
+                  style={{ width: '100%', padding: '8px', marginBottom: '10px' }} >
                   <option value="">Select an option</option>
                   {question.options.map((option) => (
                     <option key={option} value={option}>{option}</option>
@@ -185,7 +184,7 @@ const SSurveyForm = () => {
                 <select
                   value={formData[index + 6]?.selectedOption}
                   onChange={(e) => handleInputChange(index + 6, e)}
-                >
+                  style={{ width: '100%', padding: '8px', marginBottom: '10px' }} >
                   <option value="">Select an option</option>
                   {question.options.map((option) => (
                     <option key={option} value={option}>{option}</option>
@@ -202,7 +201,7 @@ const SSurveyForm = () => {
                 <select
                   value={formData[index + 7]?.selectedOption}
                   onChange={(e) => handleInputChange(index + 7, e)}
-                >
+                  style={{ width: '100%', padding: '8px', marginBottom: '10px' }} >
                   <option value="">Select an option</option>
                   {question.options.map((option) => (
                     <option key={option} value={option}>{option}</option>
