@@ -9,7 +9,7 @@ const chartTypes = [
     { value: "pie", label: "Pie" },
     { value: "doughnut", label: "Doughnut" },
     { value: "polarArea", label: "PolarChart" },
-    { value: "line", label: "lineChart" }
+    { value: "line", label: "lineChart" },
 ]
 console.log(chartTypes)
 const ResultByConsumerQuestionChart = () => {
@@ -71,7 +71,8 @@ const ResultByConsumerQuestionChart = () => {
                             'rgb(201, 203, 207)',
                             'rgb(54, 162, 235)'
                         ],
-                        borderWidth: 5,
+                        borderWidth: 3,
+                        borderColor: "black",
                         fill: false,
                     },
                 ],

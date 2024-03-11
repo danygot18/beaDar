@@ -9,4 +9,8 @@ router.get("/get-seller-results-by-question/:id", chartController.getSellerResul
 
 router.get("/get-consumer-results-by-question/:id", chartController.getConsumerResultsByQuestion);
 
+
+// router.get("/getAllanswer", chartController.getAllAnswers);
+
+
 module.exports = router;

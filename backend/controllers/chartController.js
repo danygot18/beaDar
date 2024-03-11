@@ -158,5 +158,25 @@ exports.getConsumerResultsByQuestion = async (req, res, next) => {
     });
   }
 };
+const Answer = require('../models/fanswer');
 
+exports.getAllAnswers = async (req, res, next) => {
+  try {
+    // Fetch all answers from the database
+    const answers = await Answer.find({});
+    console.log('Fetched answers:', answers); // Log the fetched answers
 
+    // Check if answers is an array before sending the response
+    if (!Array.isArray(answers)) {
+      throw new Error('Fetched data is not an array');
+    }
+
+    res.status(200).json({
+      success: true,
+      answers,
+    });
+  } catch (error) {
+    console.error('Error fetching answers:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
