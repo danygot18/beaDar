@@ -9,8 +9,9 @@ const chartTypes = [
     { value: "pie", label: "Pie" },
     { value: "doughnut", label: "Doughnut" },
     { value: "polarArea", label: "PolarChart" },
+    { value: "line", label: "lineChart" }
 ]
-
+console.log(chartTypes)
 const ResultByConsumerQuestionChart = () => {
 
     const [farmerQuestions, setFarmerQuestions] = useState([]);
@@ -52,6 +53,15 @@ const ResultByConsumerQuestionChart = () => {
                 labels: Object.keys(data),
                 datasets: [
                     {
+                        // label: 'Results',
+                        // data: Object.values(data),
+                        // backgroundColor: [
+                        //     'rgb(255, 99, 132)',
+                        //     'rgb(75, 192, 192)',
+                        //     'rgb(255, 205, 86)',
+                        //     'rgb(201, 203, 207)',
+                        //     'rgb(54, 162, 235)'
+                        // ]
                         label: 'Results',
                         data: Object.values(data),
                         backgroundColor: [
@@ -60,7 +70,9 @@ const ResultByConsumerQuestionChart = () => {
                             'rgb(255, 205, 86)',
                             'rgb(201, 203, 207)',
                             'rgb(54, 162, 235)'
-                        ]
+                        ],
+                        borderWidth: 5,
+                        fill: false,
                     },
                 ],
             },

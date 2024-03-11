@@ -9,6 +9,7 @@ const chartTypes = [
     { value: "pie", label: "Pie" },
     { value: "doughnut", label: "Doughnut" },
     { value: "polarArea", label: "PolarChart" },
+    { value: "line", label: "lineChart" },
 ]
 
 const ResultBySellerQuestionChart = () => {
@@ -60,7 +61,10 @@ const ResultBySellerQuestionChart = () => {
                             'rgb(255, 205, 86)',
                             'rgb(201, 203, 207)',
                             'rgb(54, 162, 235)'
-                        ]
+                        ],
+                        borderWidth: 3,
+                        borderColor: "black",
+                        fill: false,
                     },
                 ],
             },
