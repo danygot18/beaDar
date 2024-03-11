@@ -10,6 +10,7 @@ import ResultByConsumerQuestionChart from "../../charts/ResultByConsumerQuestion
 import SurveyForm from "../../Question/Survey";
 
 
+
 const ConsumerDashboard = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,6 +27,9 @@ const ConsumerDashboard = () => {
   //     console.error(error);
   //   }
   // };
+
+  
+
 
 
   const fetchData = async (endpoint, setData) => {
@@ -62,40 +66,8 @@ const ConsumerDashboard = () => {
                 <Fragment>
 
                   <MetaData title={"Admin Dashboard"} />
-                  <Row className="pr-5 mt-5">
-                    {[
-                      { label: "Users", data: users, link: "/admin/users" },
-                    ].map((item, index) => (
-                      <Col key={index} xl={3} sm={6} mb={3}>
-                        <Card
-                          className={`bg-${index % 4 === 0
-                            ? "success"
-                            : index % 4 === 1
-                              ? "danger"
-                              : index % 4 === 2
-                                ? "info"
-                                : "warning"
-                            } text-white o-hidden h-100`}
-                        >
-                          <Card.Body>
-                            <div className="text-center card-font-size">
-                              {item.label}
-                              <br /> <b>{item.data && item.data.length}</b>
-                            </div>
-                          </Card.Body>
-                          <Link
-                            className="card-footer text-white clearfix small z-1"
-                            to={item.link}
-                          >
-                            <span className="float-left">View Details</span>
-                            <span className="float-right">
-                              <i className="fa fa-angle-right"></i>
-                            </span>
-                          </Link>
-                        </Card>
-                      </Col>
-                    ))}
-                  </Row>
+                  
+                  
                   <Row className="mt-5 pb-5">
                     <Col md={12}>
                       <ResultByConsumerQuestionChart />
