@@ -132,7 +132,7 @@ const ResultByConsumerQuestionChart = () => {
                             },
                         },
                         animation: {
-                            duration: 0, // Set the animation duration to 0 milliseconds
+                            duration: false, // Set the animation duration to 0 milliseconds
                         },
                     },
                 });
@@ -148,7 +148,7 @@ const ResultByConsumerQuestionChart = () => {
 
                     // Add a page break for the next question
                     pdf.addPage();
-                }, 520)
+                }, 495)
                 // Convert the chart to an image
 
             } else {
